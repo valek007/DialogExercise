@@ -3,11 +3,16 @@ import java.awt.*;
 
 public class MyFrame extends JFrame {
 
-    private MyPanel panel = new MyPanel();
+    private String[] firstSelection = {"Message", "Confirmation", "Option", "Entry"};
+
+    private JPanel panel = new JPanel();
+    private MyPanel panelType = new MyPanel("Type",firstSelection);
 
     public MyFrame() {
 
         panel.setLayout(new GridLayout(2,3));
+
+        panel.add(panelType);
         add(panel);
 
         setTitle("Dialog Exercise");
