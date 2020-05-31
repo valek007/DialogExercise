@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class MyFrame extends JFrame {
 
@@ -6,6 +7,7 @@ public class MyFrame extends JFrame {
 
     public MyFrame() {
 
+        panel.setLayout(new GridLayout(2,3));
         add(panel);
 
         setTitle("Dialog Exercise");
