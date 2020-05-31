@@ -1,0 +1,1 @@
+In this practical exercise we will work with different classes from package swing (JFrame, JPanel, Component, Box, JOptionPane, RadioButtons and others). Finally we will have an application of events that will modify a popup window.
