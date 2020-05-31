@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MyFrame extends JFrame {
 
@@ -13,13 +15,13 @@ public class MyFrame extends JFrame {
         "ERROR_MESSAGE", "INFORMATION_MESSAGE", "QUESTION_MESSAGE", "PLAIN_MESSAGE"
     });
     private MyPanel panelMessage = new MyPanel("Message",new String[]{
-        "String", "Icon", "Component", "Others","Object[]"
+        "String", "Icon", "Component", "Others","Object[ ]"
     });
     private MyPanel panelTypeOption = new MyPanel("Confirmation",new String[]{
         "DEFAULT_OPTION", "YES_NO_OPTION", "YES_NO_CANCEL_OPTION", "OK_CANCEL_OPTION"
     });
     private MyPanel panelOption = new MyPanel("Option",new String[]{
-        "String[]", "Icon[]", "Object[]"
+        "String[ ]", "Icon[ ]", "Object[ ]"
     });
     private MyPanel panelEntry = new MyPanel("Entry",new String[]{
         "Text Field", "Combo"
@@ -39,6 +41,7 @@ public class MyFrame extends JFrame {
         panel.add(panelEntry);
         add(panel, BorderLayout.CENTER);
 
+        showButton.addActionListener(new showAction());
         panelButton.add(showButton);
         add(panelButton, BorderLayout.SOUTH);
 
@@ -47,5 +50,13 @@ public class MyFrame extends JFrame {
         setBounds(600,200,600,450);
         setVisible(true);
 
+    }
+
+    private class showAction implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+            System.out.println(panelType.getSelection());
+        }
     }
 }
