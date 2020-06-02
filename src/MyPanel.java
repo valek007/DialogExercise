@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public class MyPanel extends JPanel {
 
@@ -26,5 +28,19 @@ public class MyPanel extends JPanel {
 
         //return buttonGroup.getSelection().getActionCommand();
         return str;
+    }
+}
+
+class ExampleSheet extends JPanel {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponents(g);
+
+        Graphics2D g2 = (Graphics2D) g;
+
+        Rectangle2D rectangle =  new Rectangle2D.Double(0,0,getWidth(),getHeight());
+        g2.setPaint(Color.YELLOW);
+        g2.fill(rectangle);
     }
 }
