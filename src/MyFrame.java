@@ -70,15 +70,15 @@ public class MyFrame extends JFrame {
         else return null;
     }
 
-    public int getIcon(){
+    public int getTypeMessage(MyPanel panel){
 
-        String s =panelTypeMessage.getSelection();
+        String s = panel.getSelection();
 
-        if(s.equals("ERROR_MESSAGE")) return 0;
-        else if(s.equals("INFORMATION_MESSAGE")) return 1;
-        else if(s.equals("WARNING_MESSAGE")) return 2;
+        if(s.equals("ERROR_MESSAGE")||s.equals("YES_NO_OPTION")) return 0;
+        else if(s.equals("INFORMATION_MESSAGE")||s.equals("YES_NO_CANCEL_OPTION")) return 1;
+        else if(s.equals("WARNING_MESSAGE")||s.equals("OK_CANCEL_OPTION")) return 2;
         else if(s.equals("QUESTION_MESSAGE")) return 3;
-        else if(s.equals("PLAIN_MESSAGE")) return -1;
+        else if(s.equals("PLAIN_MESSAGE")||s.equals("DEFAULT_OPTION")) return -1;
         else return 0;
     }
 
@@ -89,13 +89,13 @@ public class MyFrame extends JFrame {
 //            System.out.println(panelType.getSelection());
 
             if(panelType.getSelection().equals("Message")){
-                JOptionPane.showMessageDialog(MyFrame.this,getMessage(),"Title",getIcon());
+                JOptionPane.showMessageDialog(MyFrame.this,getMessage(),"Title",getTypeMessage(panelTypeMessage));
             }else if(panelType.getSelection().equals("Confirmation")){
-                JOptionPane.showConfirmDialog(MyFrame.this,getMessage(),"Title",0,getIcon());
+                JOptionPane.showConfirmDialog(MyFrame.this,getMessage(),"Title",getTypeMessage(panelTypeOption),getTypeMessage(panelTypeMessage));
             }else if(panelType.getSelection().equals("Input")){
-                JOptionPane.showInputDialog(MyFrame.this,getMessage(),"Title",getIcon());
+                JOptionPane.showInputDialog(MyFrame.this,getMessage(),"Title",getTypeMessage(panelTypeMessage));
             }else if(panelType.getSelection().equals("Option")){
-                JOptionPane.showOptionDialog(MyFrame.this,getMessage(),"Title",0,getIcon(),null,null,null);
+                JOptionPane.showOptionDialog(MyFrame.this,getMessage(),"Title",0,getTypeMessage(panelTypeMessage),null,null,null);
             }
         }
     }
