@@ -13,7 +13,7 @@ public class MyFrame extends JFrame {
         "Message", "Confirmation", "Option", "Input"
     });
     private MyPanel panelTypeMessage = new MyPanel("Type Message",new String[]{
-        "ERROR_MESSAGE", "INFORMATION_MESSAGE", "QUESTION_MESSAGE", "PLAIN_MESSAGE"
+        "ERROR_MESSAGE", "INFORMATION_MESSAGE", "WARNING_MESSAGE","QUESTION_MESSAGE", "PLAIN_MESSAGE"
     });
     private MyPanel panelMessage = new MyPanel("Message",new String[]{
         "String", "Icon", "Component", "Others","Object[ ]"
@@ -58,6 +58,30 @@ public class MyFrame extends JFrame {
 
     }
 
+    public Object getMessage(){
+
+        String s = panelMessage.getSelection();
+
+        if(s.equals("String")) return stringMessage;
+        else if(s.equals("Icon")) return iconMessage;
+        else if(s.equals("Component")) return componetMessage;
+        else if(s.equals("Others")) return objectMessage;
+        else if(s.equals("Object[ ]")) return new Object[]{stringMessage,iconMessage,componetMessage,objectMessage};
+        else return null;
+    }
+
+    public int getIcon(){
+
+        String s =panelTypeMessage.getSelection();
+
+        if(s.equals("ERROR_MESSAGE")) return 0;
+        else if(s.equals("INFORMATION_MESSAGE")) return 1;
+        else if(s.equals("WARNING_MESSAGE")) return 2;
+        else if(s.equals("QUESTION_MESSAGE")) return 3;
+        else if(s.equals("PLAIN_MESSAGE")) return -1;
+        else return 0;
+    }
+
     private class showAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -65,13 +89,13 @@ public class MyFrame extends JFrame {
 //            System.out.println(panelType.getSelection());
 
             if(panelType.getSelection().equals("Message")){
-                JOptionPane.showMessageDialog(MyFrame.this,"Message","Title",0);
+                JOptionPane.showMessageDialog(MyFrame.this,getMessage(),"Title",getIcon());
             }else if(panelType.getSelection().equals("Confirmation")){
-                JOptionPane.showConfirmDialog(MyFrame.this,"Message","Title",0,0);
-            }else if(panelType.getSelection().equals("Option")){
-                JOptionPane.showOptionDialog(MyFrame.this,"Message","Title",0,0,null,null,null);
+                JOptionPane.showConfirmDialog(MyFrame.this,getMessage(),"Title",0,getIcon());
             }else if(panelType.getSelection().equals("Input")){
-                JOptionPane.showInputDialog(MyFrame.this,"Message","Title",0);
+                JOptionPane.showInputDialog(MyFrame.this,getMessage(),"Title",getIcon());
+            }else if(panelType.getSelection().equals("Option")){
+                JOptionPane.showOptionDialog(MyFrame.this,getMessage(),"Title",0,getIcon(),null,null,null);
             }
         }
     }
