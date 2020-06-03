@@ -82,6 +82,18 @@ public class MyFrame extends JFrame {
         else return 0;
     }
 
+    public Object[] getOptions(MyPanel panel){
+
+        String s = panel.getSelection();
+
+        if(s.equals("String[ ]")) return new String[]{"Mask","Pill","Heart"};
+        else if(s.equals("Icon[ ]")) return new Icon[]{new ImageIcon("resources/mask.png"),
+                                                        new ImageIcon("resources/pill.png"),
+                                                          new ImageIcon("resources/heart.png")};
+        else if(s.equals("Object[ ]")) return new Object[]{stringMessage,iconMessage,componetMessage,objectMessage};
+        else return null;
+    }
+
     private class showAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -93,9 +105,11 @@ public class MyFrame extends JFrame {
             }else if(panelType.getSelection().equals("Confirmation")){
                 JOptionPane.showConfirmDialog(MyFrame.this,getMessage(),"Title",getTypeMessage(panelTypeOption),getTypeMessage(panelTypeMessage));
             }else if(panelType.getSelection().equals("Input")){
-                JOptionPane.showInputDialog(MyFrame.this,getMessage(),"Title",getTypeMessage(panelTypeMessage));
+                if(panelInput.getSelection().equals("Text Field")) JOptionPane.showInputDialog(MyFrame.this,getMessage(),"Title",getTypeMessage(panelTypeMessage));
+                else JOptionPane.showInputDialog(MyFrame.this,getMessage(),"Title",getTypeMessage(panelTypeMessage),null,
+                                                                                            new String[ ]{"Mask","Pill","Heart"},"Mask");
             }else if(panelType.getSelection().equals("Option")){
-                JOptionPane.showOptionDialog(MyFrame.this,getMessage(),"Title",0,getTypeMessage(panelTypeMessage),null,null,null);
+                JOptionPane.showOptionDialog(MyFrame.this,getMessage(),"Title",1,getTypeMessage(panelTypeOption),null,getOptions(panelOption),null);
             }
         }
     }
